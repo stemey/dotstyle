@@ -1,0 +1,14 @@
+nodes {
+	color:red
+}
+
+nodes/dom/table/tr/td {
+	color:green
+}
+edges[attributes/@label='extends'] {
+	color:blue
+}
+
+edges {
+	color:black
+}

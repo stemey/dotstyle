@@ -1,0 +1,27 @@
+digraph{
+
+
+   Car -> Vehicle [label="extends"]
+   Bicycle -> Vehicle [label="extends"]
+   Car -> Engine [label="contains"]
+   Car -> Engine [label="contains"]
+
+   Vehicle[label="Vehicle"]
+   Car[label="Vehicle"]
+   Bicycle[label="Vehicle"]
+   Engine[label="< 
+   	<table>
+   		<tr>
+   			<td port='x'>Hat einen Port</td>
+   		</tr>
+   		<tr>
+   			<td>Ohne Port</td>
+   		</tr>
+   	</table>	
+	>"]
+   
+    Car -> Engine [label="connection"]
+   
+
+
+}
