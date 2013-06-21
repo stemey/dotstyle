@@ -20,7 +20,7 @@ digraph{
    	</table>	
 	>"]
    
-    Car -> Engine [label="connection"]
+    Car -> Engine:x [label="connection"]
    
 
 

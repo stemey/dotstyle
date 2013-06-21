@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import net.toobop.dot.model.Edge;
+import net.toobop.dot.model.EdgePoint;
 import net.toobop.dot.model.Graph;
 import net.toobop.dot.model.Node;
 
@@ -37,8 +38,8 @@ public class PathTest
 
 		Set<Edge> edges = new HashSet<Edge>();
 		Edge edge = new Edge();
-		edge.setFrom(nodeA);
-		edge.setTo(nodeB);
+		edge.setFrom(new EdgePoint("A"));
+		edge.setTo(new EdgePoint("B"));
 
 		graph.setEdges(edges);
 	}

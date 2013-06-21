@@ -2,27 +2,34 @@ package net.toobop.dot.model;
 
 public class Edge extends Attributed
 {
-	private Node from;
+	private EdgePoint from;
 
-	private Node to;
+	private EdgePoint to;
 
-	public Node getFrom()
+	public EdgePoint getFrom()
 	{
 		return from;
 	}
 
-	public Node getTo()
+	public EdgePoint getTo()
 	{
 		return to;
 	}
 
-	public void setFrom(Node from)
+	public void setFrom(EdgePoint from)
 	{
 		this.from = from;
 	}
 
-	public void setTo(Node to)
+	public void setTo(EdgePoint to)
 	{
 		this.to = to;
 	}
+
+	@Override
+	public String toString()
+	{
+		return "Edge [from=" + from + ", to=" + to + "]";
+	}
+
 }

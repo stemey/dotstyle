@@ -12,6 +12,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import net.toobop.dot.model.Edge;
+import net.toobop.dot.model.EdgePoint;
 import net.toobop.dot.model.Graph;
 import net.toobop.dot.model.Node;
 
@@ -23,20 +24,20 @@ import org.xml.sax.SAXException;
 public class GraphContext
 {
 
-	private final Map<String, Set<Edge>> fromEndpoints = new HashMap<String, Set<Edge>>();
+	private final Map<EdgePoint, Set<Edge>> fromEndpoints = new HashMap<EdgePoint, Set<Edge>>();
 
 	private Graph graph = new Graph();
 
-	private final Map<String, Set<Edge>> toEndpoints = new HashMap<String, Set<Edge>>();
+	private final Map<EdgePoint, Set<Edge>> toEndpoints = new HashMap<EdgePoint, Set<Edge>>();
 
-	public void addEdge(String from, String to, Edge edge)
+	public void addEdge(EdgePoint from, EdgePoint to, Edge edge)
 	{
 		graph.addEdge(edge);
 		addEndpoint(fromEndpoints, from, edge);
 		addEndpoint(toEndpoints, to, edge);
 	}
 
-	private void addEndpoint(Map<String, Set<Edge>> endpoints, String id, Edge edge)
+	private void addEndpoint(Map<EdgePoint, Set<Edge>> endpoints, EdgePoint id, Edge edge)
 	{
 		Set<Edge> set = endpoints.get(id);
 		if (set == null)
@@ -55,28 +56,28 @@ public class GraphContext
 	public Graph create()
 	{
 
-		for (Map.Entry<String, Set<Edge>> entry : toEndpoints.entrySet())
+		for (Map.Entry<EdgePoint, Set<Edge>> entry : toEndpoints.entrySet())
 		{
-			Node node = getGraph().getNode(entry.getKey());
-			if (node != null)
+			Node node = getGraph().getNode(entry.getKey().getId());
+			for (Edge edge : entry.getValue())
 			{
-				for (Edge edge : entry.getValue())
+				if (node != null)
 				{
 					node.addTo(edge);
-					edge.setTo(node);
 				}
+				edge.setTo(entry.getKey());
 			}
 		}
-		for (Map.Entry<String, Set<Edge>> entry : fromEndpoints.entrySet())
+		for (Map.Entry<EdgePoint, Set<Edge>> entry : fromEndpoints.entrySet())
 		{
-			Node node = getGraph().getNode(entry.getKey());
-			if (node != null)
+			Node node = getGraph().getNode(entry.getKey().getId());
+			for (Edge edge : entry.getValue())
 			{
-				for (Edge edge : entry.getValue())
+				if (node != null)
 				{
 					node.addFrom(edge);
-					edge.setFrom(node);
 				}
+				edge.setFrom(entry.getKey());
 			}
 		}
 

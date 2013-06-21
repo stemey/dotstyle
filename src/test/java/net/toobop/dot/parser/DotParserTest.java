@@ -1,5 +1,6 @@
 package net.toobop.dot.parser;
 
+import net.toobop.dot.model.Graph;
 import net.toobop.dot.model.Node;
 
 import org.junit.Assert;
@@ -31,7 +32,8 @@ public class DotParserTest extends AbstractParserTest
 		ParsingResult<?> result = new ReportingParseRunner(parser.Graph()).run(input);
 		assertParse(result);
 		GraphContext graphContext = (GraphContext) result.valueStack.peek();
-		Assert.assertEquals(1, graphContext.getEdgesFrom("hallo").size());
+		Graph graph = graphContext.create();
+		Assert.assertEquals(1, graph.getEdgesFrom("hallo").size());
 	}
 
 	@Test
@@ -42,8 +44,9 @@ public class DotParserTest extends AbstractParserTest
 		ParsingResult<?> result = new ReportingParseRunner(parser.Graph()).run(input);
 		assertParse(result);
 		GraphContext graphContext = (GraphContext) result.valueStack.peek();
-		Assert.assertEquals(1, graphContext.getEdgesFrom("hallo").size());
-		Assert.assertEquals("hhh", graphContext.getEdgesFrom("hallo").iterator().next().getValue("x"));
+		Graph graph = graphContext.create();
+		Assert.assertEquals(1, graph.getEdgesFrom("hallo").size());
+		Assert.assertEquals("hhh", graph.getEdgesFrom("hallo").iterator().next().getValue("x"));
 	}
 
 	@Test
@@ -54,8 +57,9 @@ public class DotParserTest extends AbstractParserTest
 		ParsingResult<?> result = new ReportingParseRunner(parser.Graph()).run(input);
 		assertParse(result);
 		GraphContext graphContext = (GraphContext) result.valueStack.peek();
-		Assert.assertEquals(1, graphContext.getEdgesFrom("hallo").size());
-		Assert.assertEquals("hhh", graphContext.getEdgesFrom("hallo").iterator().next().getValue("x"));
+		Graph graph = graphContext.create();
+		Assert.assertEquals(1, graph.getEdgesFrom("hallo").size());
+		Assert.assertEquals("hhh", graph.getEdgesFrom("hallo").iterator().next().getValue("x"));
 	}
 
 	@Test
@@ -66,7 +70,8 @@ public class DotParserTest extends AbstractParserTest
 		ParsingResult<?> result = new ReportingParseRunner(parser.Graph()).run(input);
 		assertParse(result);
 		GraphContext graphContext = (GraphContext) result.valueStack.peek();
-		Assert.assertEquals(1, graphContext.getEdgesFrom("hallo").size());
+		Graph graph = graphContext.create();
+		Assert.assertEquals(1, graph.getEdgesFrom("hallo").size());
 	}
 
 	@Test
@@ -77,7 +82,21 @@ public class DotParserTest extends AbstractParserTest
 		ParsingResult<?> result = new ReportingParseRunner(parser.Graph()).run(input);
 		assertParse(result);
 		GraphContext graphContext = (GraphContext) result.valueStack.peek();
-		Assert.assertEquals(1, graphContext.getEdgesFrom("hallo").size());
+		Graph graph = graphContext.create();
+		Assert.assertEquals(1, graph.getEdgesFrom("hallo").size());
+	}
+
+	@Test
+	public void testHtmlNode()
+	{
+		String input = "graph{hallo [label=<<aaaa>>]}";
+		DotParser parser = Parboiled.createParser(DotParser.class);
+		ParsingResult<?> result = new ReportingParseRunner(parser.Graph()).run(input);
+		assertParse(result);
+		GraphContext graphContext = (GraphContext) result.valueStack.peek();
+		Node node = graphContext.create().getNode("hallo");
+		Assert.assertNotNull(node);
+		Assert.assertEquals("aaaa", node.getValue("label"));
 	}
 
 	@Test

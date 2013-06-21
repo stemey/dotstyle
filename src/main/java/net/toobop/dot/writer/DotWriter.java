@@ -73,7 +73,7 @@ public class DotWriter
 	{
 		String indentString = indentString(indent);
 		w.write(indentString);
-		w.write(edge.getFrom().getId());
+		w.write(edge.getFrom().getFullId());
 		w.write(" ");
 		if (directed)
 		{
@@ -83,7 +83,7 @@ public class DotWriter
 		{
 			w.write("-- ");
 		}
-		w.write(edge.getTo().getId());
+		w.write(edge.getTo().getFullId());
 		writeAttributes(indent + 1, edge, w);
 	}
 

@@ -83,6 +83,12 @@ public class Node extends Attributed
 		this.id = id;
 	}
 
+	@Override
+	public String toString()
+	{
+		return "Node [dom=" + dom + ", id=" + id + "]";
+	}
+
 	private String writeDom()
 	{
 		try

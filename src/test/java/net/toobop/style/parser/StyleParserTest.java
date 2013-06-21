@@ -1,6 +1,6 @@
 package net.toobop.style.parser;
 
-import java.util.List;
+import java.util.Collection;
 
 import net.toobop.dot.parser.AbstractParserTest;
 import net.toobop.style.model.Rule;
@@ -14,6 +14,26 @@ import org.parboiled.support.ParsingResult;
 
 public class StyleParserTest extends AbstractParserTest
 {
+
+	@Test
+	public void testFail()
+	{
+		String input = "nod  es :::}}";
+		StyleParser parser = Parboiled.createParser(StyleParser.class);
+		ParsingResult<?> result = new ReportingParseRunner(parser.Style()).run(input);
+		Assert.assertTrue(result.hasErrors());
+	}
+
+	@Test
+	public void testRules()
+	{
+		String input = "nodes[@id='asd'] {\n color:green \n}";
+		StyleParser parser = Parboiled.createParser(StyleParser.class);
+		ParsingResult<?> result = new ReportingParseRunner(parser.Style()).run(input);
+		assertParse(result);
+
+		StyleContext ctx = (StyleContext) result.valueStack.pop();
+	}
 
 	@Test
 	public void testRuleWithOneAttributes()
@@ -60,9 +80,9 @@ public class StyleParserTest extends AbstractParserTest
 		assertParse(result);
 
 		StyleContext ctx = (StyleContext) result.valueStack.pop();
-		List<Rule> rules = ctx.create().getRules();
+		Collection<Rule> rules = ctx.create().getRules();
 		Assert.assertEquals(1, rules.size());
-		Rule rule = rules.get(0);
+		Rule rule = rules.iterator().next();
 		Assert.assertEquals("red", rule.get("color"));
 		Assert.assertEquals("100", rule.get("height"));
 

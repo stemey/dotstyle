@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringWriter;
 
+import net.toobop.common.ParseException;
 import net.toobop.dot.Main;
 import net.toobop.dot.model.Graph;
 import net.toobop.dot.writer.DotWriter;
@@ -16,7 +17,7 @@ import org.apache.commons.io.IOUtils;
 
 public class ClassesParser
 {
-	public static void main(String[] args) throws FileNotFoundException, IOException
+	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException
 	{
 		File f = new File(ClassesParser.class.getResource("/classes.dot").getFile());
 		String input = IOUtils.toString(new FileReader(f));

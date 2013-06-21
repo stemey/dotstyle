@@ -19,13 +19,17 @@ public class DotParser extends BaseParser<Object>
 
 	final Rule Equal = String("=");
 
+	final Rule Gt = String(">");
+
+	final Rule Lt = String("<");
+
 	final Rule Semicolon = String(";");
 
 	final Rule UndirectedLine = String("--");
 
 	Rule Attribute()
 	{
-		return Sequence(Id(), Equal(), Value(), ACTION(actions.attribute()));
+		return Sequence(Id(), WhiteSpace(), Equal(), Value(), ACTION(actions.attribute()));
 	}
 
 	Rule AttributeList()
@@ -50,9 +54,9 @@ public class DotParser extends BaseParser<Object>
 
 	Rule Edge()
 	{
-		return Sequence(Id(),// 1
+		return Sequence(EdgePoint(),//
 			EdgeLine(),//
-			Id(), //
+			EdgePoint(),//
 			AttributeList(),//
 			OptionalSemicolon(),//
 			ACTION(actions.edge()));
@@ -61,6 +65,13 @@ public class DotParser extends BaseParser<Object>
 	Rule EdgeLine()
 	{
 		return Sequence(FirstOf(DirectedLine, UndirectedLine), WhiteSpace());
+	}
+
+	Rule EdgePoint()
+	{
+		return Sequence(OneOrMore(IdLetter()), push(matchOrDefault("")), //
+			Optional(Sequence(String(":"), push(matchOrDefault("")), Port(), push(matchOrDefault("")))),//
+			WhiteSpace(), ACTION(actions.edgePoint())); //
 	}
 
 	Rule Equal()
@@ -76,13 +87,25 @@ public class DotParser extends BaseParser<Object>
 			push(matchOrDefault("")),//
 			WhiteSpace(),//
 			ACTION(actions.graph()),//
-			Braces(Body()));
+			Braces(Body()),//
+			WhiteSpace(),//
+			EOI);
+	}
+
+	Rule HtmlValue()
+	{
+		return Sequence(Lt, Lt, ZeroOrMore(TestNot(">>"), AnyOf(">a<")), push(matchOrDefault("")), Gt, Gt, WhiteSpace());
+	}
+
+	Rule HtmlValueLetter()
+	{
+		return ZeroOrMore(TestNot(String(">>")));
 	}
 
 	Rule Id()
 	{
 
-		return Sequence(OneOrMore(IdLetter()), push(matchOrDefault("")), WhiteSpace());
+		return Sequence(OneOrMore(IdLetter()), push(matchOrDefault("")));
 	}
 
 	Rule IdLetter()
@@ -92,7 +115,7 @@ public class DotParser extends BaseParser<Object>
 
 	Rule Node()
 	{
-		return Sequence(Id(), AttributeList(), OptionalSemicolon(), ACTION(actions.node()));
+		return Sequence(Id(), WhiteSpace(), AttributeList(), OptionalSemicolon(), ACTION(actions.node()));
 	}
 
 	Rule OptionalSemicolon()
@@ -100,9 +123,26 @@ public class DotParser extends BaseParser<Object>
 		return ZeroOrMore(Sequence(Semicolon, WhiteSpace()));
 	}
 
+	Rule Port()
+	{
+
+		return OneOrMore(PortLetter());
+	}
+
+	Rule PortLetter()
+	{
+		return new IdLetterMatcher();
+	}
+
+	Rule StringValue()
+	{
+		// TODO missing escapes ""
+		return Sequence(Apo, OneOrMore(ValueLetter()), push(matchOrDefault("")), Apo, WhiteSpace());
+	}
+
 	Rule Value()
 	{
-		return Sequence(Apo, OneOrMore(ValueLetter()), push(matchOrDefault("")), Apo, WhiteSpace());
+		return FirstOf(StringValue(), HtmlValue());
 	}
 
 	Rule ValueLetter()

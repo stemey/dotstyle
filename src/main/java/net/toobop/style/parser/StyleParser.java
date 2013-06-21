@@ -48,7 +48,7 @@ public class StyleParser extends BaseParser<Object>
 
 	public Rule Style()
 	{
-		return Sequence(ACTION(actions.style()), this.ZeroOrMore(Rule()));
+		return Sequence(ACTION(actions.style()), this.ZeroOrMore(Rule()), WhiteSpace(), EOI);
 	}
 
 	Rule Value()

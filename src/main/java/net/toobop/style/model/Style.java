@@ -1,19 +1,20 @@
 package net.toobop.style.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.TreeSet;
+
 
 
 public class Style
 {
-	private final List<Rule> rules = new ArrayList<Rule>();
+	private final Collection<Rule> rules = new TreeSet<Rule>(new RuleComparator());
 
 	public void addRule(Rule rule)
 	{
 		rules.add(rule);
 	}
 
-	public List<Rule> getRules()
+	public Collection<Rule> getRules()
 	{
 		return rules;
 	}

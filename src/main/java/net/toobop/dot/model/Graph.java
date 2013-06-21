@@ -1,5 +1,7 @@
 package net.toobop.dot.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,6 +27,21 @@ public class Graph extends Attributed
 	public Set<Edge> getEdges()
 	{
 		return edges;
+	}
+
+	public Collection<Edge> getEdgesFrom(String edgeId)
+	{
+		Collection<Edge> foundEdges = new ArrayList<Edge>();
+		EdgePoint edgePoint = EdgePoint.create(edgeId);
+		for (Edge edge : edges)
+		{
+			if (edgePoint.equals(edge.getFrom()))
+			{
+				foundEdges.add(edge);
+			}
+		}
+		return foundEdges;
+
 	}
 
 	public Node getNode(String id)

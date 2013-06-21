@@ -16,6 +16,26 @@ public class Rule
 		attributes.put(attribute.getName(), attribute.getValue());
 	}
 
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Rule other = (Rule) obj;
+		if (xpath == null)
+		{
+			if (other.xpath != null)
+				return false;
+		}
+		else if (!xpath.equals(other.xpath))
+			return false;
+		return true;
+	}
+
 	public String get(String name)
 	{
 		return attributes.get(name);
@@ -31,6 +51,15 @@ public class Rule
 		return xpath;
 	}
 
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((xpath == null) ? 0 : xpath.hashCode());
+		return result;
+	}
+
 	public void put(String name, String value)
 	{
 		attributes.put(name, value);
@@ -39,6 +68,12 @@ public class Rule
 	public void setXpath(String xpath)
 	{
 		this.xpath = xpath;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Rule [xpath=" + xpath + "]";
 	}
 
 }
