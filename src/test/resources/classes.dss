@@ -12,6 +12,10 @@ nodes {
 }
 
 nodes/dom/table/tr/td {
+	color:red
+}
+
+nodes/dom/table/tr/td/table[@class='properties'] {
 	color:green
 }
 

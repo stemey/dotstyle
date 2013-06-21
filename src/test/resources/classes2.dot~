@@ -1,0 +1,55 @@
+digraph{
+	Bicycle		[
+			label="Bicycle",
+		]
+	Engine		[
+			color="green",
+			label=<<table>
+   		<tr>
+   			<td color="red">Engine</td>
+   		</tr>
+   		<tr>
+   			<td color="red">
+			   	<table class="properties">
+					<tr>
+					   	<td>horsePower: int</td>
+					</tr>
+					<tr>
+						<td>cylinderCount: int</td>
+					</tr>
+				</table>
+   			</td>
+   		</tr>
+   		
+   	</table>
+>,
+		]
+	Car		[
+			label="Car",
+		]
+	Vehicle		[
+			label="Vehicle",
+		]
+	Car -> Engine		[
+			color="grey",
+			label="connection",
+			linestyle="stash",
+		]
+	Car -> Engine		[
+			color="black",
+			label="contains",
+		]
+	Bicycle -> Vehicle		[
+			color="blue",
+			label="extends",
+		]
+	Car -> Engine		[
+			color="black",
+			label="contains",
+		]
+	Car -> Vehicle		[
+			color="blue",
+			label="extends",
+		]
+
+}

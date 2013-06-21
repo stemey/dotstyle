@@ -94,7 +94,7 @@ public class DotParser extends BaseParser<Object>
 
 	Rule HtmlValue()
 	{
-		return Sequence(Lt, Lt, ZeroOrMore(TestNot(">>"), AnyOf(">a<")), push(matchOrDefault("")), Gt, Gt, WhiteSpace());
+		return Sequence(Lt, Lt, ZeroOrMore(TestNot(">>"), ANY), push(matchOrDefault("")), Gt, Gt, WhiteSpace());
 	}
 
 	Rule HtmlValueLetter()

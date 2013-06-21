@@ -104,8 +104,7 @@ public class Node extends Attributed
 			StringWriter stringWriter = new StringWriter();
 			transformer.transform(new DOMSource(this.dom), new StreamResult(stringWriter));
 			String result = stringWriter.toString();
-			result = result.replaceAll("\"", "'");
-			return "<\n" + result + "\n>";
+			return "<" + result + ">";
 		}
 		catch (TransformerException e)
 		{

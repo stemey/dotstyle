@@ -7,20 +7,28 @@ digraph{
    Car -> Engine [label="contains"]
 
    Vehicle[label="Vehicle"]
-   Car[label="Vehicle"]
-   Bicycle[label="Vehicle"]
-   Engine[label="< 
-   	<table>
+   Car[label="Car"]
+   Bicycle[label="Bicycle"]
+   Engine[label=<<table>
    		<tr>
-   			<td port='x'>Hat einen Port</td>
+   			<td>Engine</td>
    		</tr>
    		<tr>
-   			<td>Ohne Port</td>
+   			<td>
+			   	<table class="properties">
+					<tr >
+					   	<td>horsePower: int</td>
+					</tr>
+					<tr>
+						<td>cylinderCount: int</td>
+					</tr>
+				</table>
+   			</td>
    		</tr>
-   	</table>	
-	>"]
+   		
+   	</table>>]
    
-    Car -> Engine:x [label="connection"]
+    Car -> Engine [label="connection"]
    
 
 

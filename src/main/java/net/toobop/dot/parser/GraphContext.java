@@ -88,8 +88,7 @@ public class GraphContext
 				String value = node.getValue("label");
 				if (value != null)
 				{
-					// strip < and >
-					value = value.substring(1, value.length() - 1);
+					value = "<" + value + ">";
 					try
 					{
 						Document dom =

@@ -89,14 +89,14 @@ public class DotParserTest extends AbstractParserTest
 	@Test
 	public void testHtmlNode()
 	{
-		String input = "graph{hallo [label=<<aaaa>>]}";
+		String input = "graph{hallo [label=<<a>aa</a>>]}";
 		DotParser parser = Parboiled.createParser(DotParser.class);
 		ParsingResult<?> result = new ReportingParseRunner(parser.Graph()).run(input);
 		assertParse(result);
 		GraphContext graphContext = (GraphContext) result.valueStack.peek();
 		Node node = graphContext.create().getNode("hallo");
 		Assert.assertNotNull(node);
-		Assert.assertEquals("aaaa", node.getValue("label"));
+		Assert.assertEquals("a>aa</a", node.getValue("label"));
 	}
 
 	@Test
