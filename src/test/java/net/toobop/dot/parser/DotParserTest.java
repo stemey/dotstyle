@@ -87,6 +87,30 @@ public class DotParserTest extends AbstractParserTest
 	}
 
 	@Test
+	public void testGraphAttributes()
+	{
+		String input = "graph { style = \"file.dss\" }";
+		DotParser parser = Parboiled.createParser(DotParser.class);
+		ParsingResult<?> result = new ReportingParseRunner(parser.Graph()).run(input);
+		assertParse(result);
+		GraphContext graphContext = (GraphContext) result.valueStack.peek();
+		Graph graph = graphContext.create();
+		Assert.assertEquals("file.dss", graph.getValue("style"));
+	}
+
+	@Test
+	public void testGraphAttributesAndNode()
+	{
+		String input = "graph { style = \"file.dss\" ddd;}";
+		DotParser parser = Parboiled.createParser(DotParser.class);
+		ParsingResult<?> result = new ReportingParseRunner(parser.Graph()).run(input);
+		assertParse(result);
+		GraphContext graphContext = (GraphContext) result.valueStack.peek();
+		Graph graph = graphContext.create();
+		Assert.assertEquals("file.dss", graph.getValue("style"));
+	}
+
+	@Test
 	public void testHtmlNode()
 	{
 		String input = "graph{hallo [label=<<a>aa</a>>]}";
@@ -96,7 +120,7 @@ public class DotParserTest extends AbstractParserTest
 		GraphContext graphContext = (GraphContext) result.valueStack.peek();
 		Node node = graphContext.create().getNode("hallo");
 		Assert.assertNotNull(node);
-		Assert.assertEquals("a>aa</a", node.getValue("label"));
+		Assert.assertEquals("<a>aa</a>", node.getValue("label"));
 	}
 
 	@Test

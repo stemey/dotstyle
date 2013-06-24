@@ -70,6 +70,17 @@ public class AstActions implements ContextAware<Object>
 		return true;
 	}
 
+	public boolean graphAttribute()
+	{
+		String value = (String) ctx.getValueStack().pop();
+		String name = (String) ctx.getValueStack().pop();
+
+		GraphContext graphContext = (GraphContext) ctx.getValueStack().peek();
+		graphContext.getGraph().setValue(name, value);
+		return true;
+
+	}
+
 	public boolean node()
 	{
 		Node node = new Node();

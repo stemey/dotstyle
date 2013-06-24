@@ -1,12 +1,15 @@
 package net.toobop.dot.model;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class Attributed
+public abstract class Attributed
 {
+
 	private final Map<String, String> attributes = new HashMap<String, String>();
 
 	public void addAttribute(Attribute attribute)
@@ -44,4 +47,8 @@ public class Attributed
 		attributes.put(name, value);
 	}
 
+	public void writeValue(String name, Writer writer) throws IOException
+	{
+		writer.write("\"" + getValue(name) + "\"");
+	}
 }

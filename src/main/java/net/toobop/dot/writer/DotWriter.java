@@ -47,9 +47,9 @@ public class DotWriter
 			w.write(indentString);
 			w.write("\t");
 			w.write(name);
-			w.write("=\"");
-			w.write(attributed.getValue(name));
-			w.write("\",\n");
+			w.write("=");
+			attributed.writeValue(name, w);
+			w.write(",\n");
 		}
 
 		w.write(indentString);

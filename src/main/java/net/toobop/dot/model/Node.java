@@ -1,6 +1,8 @@
 package net.toobop.dot.model;
 
+import java.io.IOException;
 import java.io.StringWriter;
+import java.io.Writer;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -109,6 +111,19 @@ public class Node extends Attributed
 		catch (TransformerException e)
 		{
 			throw new IllegalStateException("cannot wwrite dom", e);
+		}
+	}
+
+	@Override
+	public void writeValue(String name, Writer writer) throws IOException
+	{
+		if ("label".equals(name) && dom != null)
+		{
+			writer.append(writeDom());
+		}
+		else
+		{
+			writer.write("\"" + super.getValue(name) + "\"");
 		}
 	}
 

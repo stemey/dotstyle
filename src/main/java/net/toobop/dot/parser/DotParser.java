@@ -39,7 +39,7 @@ public class DotParser extends BaseParser<Object>
 
 	Rule Body()
 	{
-		return this.ZeroOrMore(FirstOf(Edge(), Node()));
+		return this.ZeroOrMore(FirstOf(Edge(), GraphAttribute(), Node()));
 	}
 
 	Rule Braces(Rule body)
@@ -90,6 +90,11 @@ public class DotParser extends BaseParser<Object>
 			Braces(Body()),//
 			WhiteSpace(),//
 			EOI);
+	}
+
+	Rule GraphAttribute()
+	{
+		return Sequence(Id(), WhiteSpace(), Equal(), Value(), ACTION(actions.graphAttribute()), OptionalSemicolon());
 	}
 
 	Rule HtmlValue()

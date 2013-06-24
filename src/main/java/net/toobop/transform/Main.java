@@ -23,9 +23,19 @@ public class Main
 			String input = IOUtils.toString(new FileReader(f));
 			Graph graph = new net.toobop.dot.Main().parse(input);
 
-			File s = new File(args[1]);
-			String sinput = IOUtils.toString(new FileReader(s));
-			Style style = new net.toobop.style.Main().parse(sinput);
+			Style style;
+			if (args.length > 1)
+			{
+				File file = new File(args[1]);
+				String sinput = IOUtils.toString(new FileReader(file));
+				style = new net.toobop.style.Main().parse(sinput);
+			}
+			else
+			{
+				String styleFile = graph.getValue("style");
+				String sinput = IOUtils.toString(new FileReader(new File(f.getParentFile(), styleFile)));
+				style = new net.toobop.style.Main().parse(sinput);
+			}
 
 			StyleTransformer styleTransformer = new StyleTransformer();
 			styleTransformer.transform(graph, style);
