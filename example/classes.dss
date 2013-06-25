@@ -1,30 +1,47 @@
-nodes[@id='Engine'] {
-	color:green
-}
-
 edges {
 	color:black
 }
 
-
 nodes {
-	color:red
+	shape:plaintext
 }
+
+
+nodes/dom/table {
+	border:2;
+	color:grey;
+	cellspacing:0;	
+	cellpadding:4
+}
+
+nodes/dom/table/tr[1]/td {
+	bgcolor:lightgrey;
+	color:grey;
+	cellpadding:8;
+	align:center
+}
+
 
 nodes/dom/table/tr/td {
-	color:red
+	border:0;
+	align: left
 }
 
-nodes/dom/table/tr/td/table[@class='properties'] {
-	color:green
+
+nodes/dom/table/tr/td/table {
+	border:0;
+	cellspacing:0;	
+	cellpadding:4	
 }
 
 edges[attributes/@label='extends'] {
-	color:blue
+	arrowhead:onormal
+}
+edges[attributes/@tooltip='extends'] {
+	arrowhead:onormal
+}
+edges[attributes/@tooltip='has'] {
+	arrowhead:normal;
+	constraint:false
 }
 
-
-edges[attributes/@label='connection'] {
-	color:grey;
-	linestyle:stash
-}

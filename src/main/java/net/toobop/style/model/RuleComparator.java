@@ -8,7 +8,14 @@ public class RuleComparator implements Comparator<Rule>
 
 	public int compare(Rule o1, Rule o2)
 	{
-		return o2.getXpath().length() - o1.getXpath().length();
+		int lengthDiff = o2.getXpath().length() - o1.getXpath().length();
+		if (lengthDiff == 0)
+		{
+			return o1.getXpath().compareTo(o2.getXpath());
+		}
+		else
+		{
+			return lengthDiff;
+		}
 	}
-
 }

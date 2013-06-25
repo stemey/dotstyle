@@ -1,35 +1,55 @@
 digraph{
+   
+   rankdir="TB";
+   
 
-	style= "classes.dss";
+   style= "classes.dss";
 
-   Car -> Vehicle [label="extends"]
-   Bicycle -> Vehicle [label="extends"]
-   Car -> Engine [label="contains"]
-   Car -> Engine [label="contains"]
+   Car -> Vehicle [tooltip="extends"]
+   Bicycle -> Vehicle [tooltip="extends"]
+   Car:engine -> Engine [tooltip="has"]
+   Car:emergency -> Bicycle [tooltip="has"]
 
-   Vehicle[label="Vehicle"]
-   Car[label="Car"]
-   Bicycle[label="Bicycle"]
+   
    Engine[label=<<table>
    		<tr>
-   			<td>Engine</td>
+   			<td><font>Engine</font></td>
    		</tr>
    		<tr>
-   			<td>
-			   	<table class="properties">
-					<tr >
-					   	<td>horsePower: int</td>
-					</tr>
-					<tr>
-						<td>cylinderCount: int</td>
-					</tr>
-				</table>
-   			</td>
-   		</tr>
+ 		   	<td>horsePower: int</td>
+		</tr>
+		<tr>
+			<td>cylinderCount: int</td>
+		</tr>
    		
    	</table>>]
    
-    Car -> Engine [label="connection"]
+   Vehicle[label=<<table>
+   		<tr>
+   			<td><font>Vehicle</font></td>
+		</tr>   		
+  		<tr>
+ 		   	<td>wheels: int</td>
+		</tr>
+   	</table>>]
+   
+   Car[label=<<table>
+   		<tr>
+   			<td><font>Car</font></td>
+		</tr>   		
+   		<tr>
+   			<td port="engine">engine</td>
+		</tr>   		
+   		<tr>
+   			<td port="emergency">emergency vehicle</td>
+		</tr>   		
+   	</table>>]
+   
+   Bicycle[label=<<table>
+   		<tr>
+   			<td><font>Bicycle</font></td>
+		</tr>   		
+   	</table>>]
    
 
 
