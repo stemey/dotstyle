@@ -15,7 +15,7 @@ nodes/dom/table {
 	border:2;
 	color:grey;
 	cellspacing:0;	
-	cellpadding:4
+	cellpadding:6
 }
 
 nodes/dom/table/tr[1]/td {
