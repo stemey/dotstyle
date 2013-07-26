@@ -1,42 +1,48 @@
 digraph{
    
-   rankdir="TB";
-   
-
    style= "classes.dss";
-
+	rankdir="BT";
+ 	ranksep="1.25"; 
+	nodesep="1.2";
+  
    Car -> Vehicle [tooltip="extends"]
    Bicycle -> Vehicle [tooltip="extends"]
-   Car:engine -> Engine [tooltip="has"]
    Car:emergency -> Bicycle [tooltip="has"]
+   Car:engine -> Engine [tooltip="has"]
 
-   
-   Engine[label=<<table>
+    
+   Engine[label=<<table> 
    		<tr>
    			<td><font>Engine</font></td>
    		</tr>
-   		<tr>
- 		   	<td>horsePower: int</td>
-		</tr>
+    		<tr>
+ 	 	   	<td>horsePower: int</td> 
+		</tr> 
 		<tr>
-			<td>cylinderCount: int</td>
+			<td>cylinderCount: int</td> 
 		</tr>
    		
-   	</table>>]
+   	</table>>]  
    
-   Vehicle[label=<<table>
+   Vehicle[label=<<table > 
    		<tr>
    			<td><font>Vehicle</font></td>
-		</tr>   		
-  		<tr>
+		</tr>    		
+   		<tr type="stereotype">
+   			<td>&lt;&lt;class&gt;&gt;</td>
+		</tr>    		
+   		<tr>
+ 		   	<td >vroom() : void</td>
+		</tr>
+   		<tr>
  		   	<td>wheels: int</td>
 		</tr>
-   	</table>>]
+    	</table>>]
    
    Car[label=<<table>
    		<tr>
    			<td><font>Car</font></td>
-		</tr>   		
+		</tr>  
    		<tr>
    			<td port="engine">engine</td>
 		</tr>   		

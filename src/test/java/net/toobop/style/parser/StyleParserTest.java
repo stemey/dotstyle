@@ -25,6 +25,22 @@ public class StyleParserTest extends AbstractParserTest
 	}
 
 	@Test
+	public void testRootRule()
+	{
+		String input = "/ {color:green}";
+		StyleParser parser = Parboiled.createParser(StyleParser.class);
+		ParsingResult<?> result = new ReportingParseRunner(parser.Style()).run(input);
+		assertParse(result);
+
+		StyleContext ctx = (StyleContext) result.valueStack.pop();
+		Collection<Rule> rules = ctx.create().getRules();
+		Assert.assertEquals(1, rules.size());
+		Rule rule = rules.iterator().next();
+		rule.setXpath("/");
+		Assert.assertEquals("green", rule.get("color"));
+	}
+
+	@Test
 	public void testRules()
 	{
 		String input = "nodes[@id='asd'] {\n color:green \n}";

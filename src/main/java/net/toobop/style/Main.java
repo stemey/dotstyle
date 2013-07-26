@@ -16,11 +16,11 @@ public class Main
 	{
 		StyleParser parser = Parboiled.createParser(StyleParser.class);
 		ParsingResult<?> result = new BasicParseRunner(parser.Style()).run(input);
-		StyleContext ctx = (StyleContext) result.valueStack.pop();
 		if (result.hasErrors())
 		{
 			throw new ParseException("error in dot parsing. ", result);
 		}
+		StyleContext ctx = (StyleContext) result.valueStack.pop();
 		return ctx.create();
 	}
 }

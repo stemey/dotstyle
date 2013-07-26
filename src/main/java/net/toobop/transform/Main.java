@@ -48,6 +48,7 @@ public class Main
 		catch (Exception e)
 		{
 			System.err.println("cannot transform dot: " + e.getMessage());
+			e.printStackTrace(System.err);
 		}
 	}
 }

@@ -14,7 +14,7 @@ public class IdLetterMatcher extends CustomMatcher
 
 	private boolean acceptChar(char currentChar)
 	{
-		return (Character.isLetter(currentChar)) && currentChar != ' ' && currentChar != ';' && currentChar != '-'
+		return (Character.isLetter(currentChar) || currentChar == '-') && currentChar != ' ' && currentChar != ';'
 			&& currentChar != '[' && currentChar != '{' && currentChar != '}';
 	}
 

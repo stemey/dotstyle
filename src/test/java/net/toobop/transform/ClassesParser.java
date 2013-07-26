@@ -19,11 +19,13 @@ public class ClassesParser
 {
 	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException
 	{
-		File f = new File(ClassesParser.class.getResource("/classes.dot").getFile());
+		String dir = args[0];
+
+		File f = new File(dir + "/classes.dot");
 		String input = IOUtils.toString(new FileReader(f));
 		Graph graph = new Main().parse(input);
 
-		File s = new File(ClassesParser.class.getResource("/classes.dss").getFile());
+		File s = new File(dir + "/classes.dss");
 		String sinput = IOUtils.toString(new FileReader(s));
 		Style style = new net.toobop.style.Main().parse(sinput);
 

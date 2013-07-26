@@ -37,11 +37,15 @@ public class DotWriter
 		w.flush();
 	}
 
-	private void writeAttributes(int indent, Attributed attributed, BufferedWriter w) throws IOException
+	private void writeAttributes(int indent, Attributed attributed, BufferedWriter w, boolean addBrackets)
+		throws IOException
 	{
 		String indentString = indentString(indent);
 		w.write(indentString);
-		w.write("[\n");
+		if (addBrackets)
+		{
+			w.write("[\n");
+		}
 		for (String name : attributed.getAttributeNames())
 		{
 			w.write(indentString);
@@ -49,16 +53,27 @@ public class DotWriter
 			w.write(name);
 			w.write("=");
 			attributed.writeValue(name, w);
-			w.write(",\n");
+			if (addBrackets)
+			{
+				w.write(",\n");
+			}
+			else
+			{
+				w.write(";\n");
+			}
 		}
 
 		w.write(indentString);
-		w.write("]\n");
+		if (addBrackets)
+		{
+			w.write("]\n");
+		}
 
 	}
 
 	private void writeBody(Graph graph, BufferedWriter w) throws IOException
 	{
+		writeAttributes(0, graph, w, false);
 		for (Node node : graph.getNodes())
 		{
 			writeNode(1, node, w);
@@ -84,7 +99,7 @@ public class DotWriter
 			w.write("-- ");
 		}
 		w.write(edge.getTo().getFullId());
-		writeAttributes(indent + 1, edge, w);
+		writeAttributes(indent + 1, edge, w, true);
 	}
 
 	private void writeNode(int indent, Node node, BufferedWriter w) throws IOException
@@ -92,7 +107,7 @@ public class DotWriter
 		String indentString = indentString(indent);
 		w.write(indentString);
 		w.write(node.getId());
-		writeAttributes(indent + 1, node, w);
+		writeAttributes(indent + 1, node, w, true);
 	}
 
 }

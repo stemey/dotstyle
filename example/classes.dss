@@ -1,4 +1,8 @@
-edges {
+. {
+	shape:circle
+}
+
+/edges {
 	color:black
 }
 
@@ -17,9 +21,26 @@ nodes/dom/table {
 nodes/dom/table/tr[1]/td {
 	bgcolor:lightgrey;
 	color:grey;
-	cellpadding:8;
+	cellpadding:12;
 	align:center
 }
+
+nodes/dom/table/tr[1]/td/font {
+	point-size:18
+} 
+
+
+nodes/dom/table/tr[@type='stereotype']/td {
+	bgcolor:lightgrey;
+	cellpadding:8;
+	align:center
+} 
+
+nodes/dom/table/tr[@type='stereotype']/td {
+	bgcolor:lightgrey;
+	cellpadding:8;
+	align:center
+} 
 
 
 nodes/dom/table/tr/td {
@@ -41,7 +62,6 @@ edges[attributes/@tooltip='extends'] {
 	arrowhead:onormal
 }
 edges[attributes/@tooltip='has'] {
-	arrowhead:normal;
-	constraint:false
+	arrowhead:normal
 }
 
