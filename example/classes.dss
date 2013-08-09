@@ -1,6 +1,8 @@
 . {
-	shape:circle
-}
+	splines:true;
+	rankdir:BT
+
+ }
 
 /edges {
 	color:black
@@ -18,41 +20,33 @@ nodes/dom/table {
 	cellpadding:6
 }
 
-nodes/dom/table/tr[1]/td {
+nodes/dom/table/th/td {
 	bgcolor:lightgrey;
 	color:grey;
-	cellpadding:12;
-	align:center
+	cellpadding:18;
+	align:center;
+	border:0
 }
 
-nodes/dom/table/tr[1]/td/font {
+nodes/dom/table/th/td/font {
 	point-size:18
 } 
 
 
-nodes/dom/table/tr[@type='stereotype']/td {
+nodes/dom/table/th[2]/td {
 	bgcolor:lightgrey;
-	cellpadding:8;
+	cellpadding:4;
 	align:center
 } 
 
-nodes/dom/table/tr[@type='stereotype']/td {
-	bgcolor:lightgrey;
-	cellpadding:8;
-	align:center
+nodes/dom/table/th[2]/td/font {
+	point-size:12
 } 
-
 
 nodes/dom/table/tr/td {
 	border:0;
-	align: left
-}
-
-
-nodes/dom/table/tr/td/table {
-	border:0;
-	cellspacing:0;	
-	cellpadding:4	
+	align: left;
+	cellpadding:8	
 }
 
 edges[attributes/@label='extends'] {
@@ -62,6 +56,9 @@ edges[attributes/@tooltip='extends'] {
 	arrowhead:onormal
 }
 edges[attributes/@tooltip='has'] {
-	arrowhead:normal
+	arrowhead:normal;
+	weight:0
+
+
 }
 

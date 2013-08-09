@@ -1,10 +1,7 @@
 digraph{
    
    style= "classes.dss";
-	rankdir="BT";
- 	ranksep="1.25"; 
-	nodesep="1.2";
-  
+ 
    Car -> Vehicle [tooltip="extends"]
    Bicycle -> Vehicle [tooltip="extends"]
    Car:emergency -> Bicycle [tooltip="has"]
@@ -12,10 +9,10 @@ digraph{
 
     
    Engine[label=<<table> 
-   		<tr>
+   		<th>
    			<td><font>Engine</font></td>
-   		</tr>
-    		<tr>
+   		</th>
+    	<tr>
  	 	   	<td>horsePower: int</td> 
 		</tr> 
 		<tr>
@@ -25,36 +22,43 @@ digraph{
    	</table>>]  
    
    Vehicle[label=<<table > 
-   		<tr>
+   		<th>
    			<td><font>Vehicle</font></td>
-		</tr>    		
-   		<tr type="stereotype">
-   			<td>&lt;&lt;class&gt;&gt;</td>
-		</tr>    		
+		</th>    		
+   		<th>
+   			<td><font>&lt;&lt;<i>class</i>&gt;&gt;</font></td>
+		</th>    		
    		<tr>
  		   	<td >vroom() : void</td>
 		</tr>
    		<tr>
- 		   	<td>wheels: int</td>
+ 		   	<td >break() : void</td>
+		</tr>
+		<hr></hr>  		
+   		<tr>
+ 		   	<td>wheels: int</td> 
+		</tr>
+   		<tr>
+ 		   	<td>exhaustCount: int</td> 
 		</tr>
     	</table>>]
    
    Car[label=<<table>
-   		<tr>
+   		<th>
    			<td><font>Car</font></td>
-		</tr>  
+		</th>   
    		<tr>
-   			<td port="engine">engine</td>
+   			<td port="engine">engine : Engine</td>
 		</tr>   		
    		<tr>
-   			<td port="emergency">emergency vehicle</td>
+   			<td port="emergency">emergency bicycle : Bicycle</td>
 		</tr>   		
    	</table>>]
    
    Bicycle[label=<<table>
-   		<tr>
+   		<th>
    			<td><font>Bicycle</font></td>
-		</tr>   		
+		</th>   		
    	</table>>]
    
 
