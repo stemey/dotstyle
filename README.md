@@ -1,7 +1,7 @@
 dotstyle
 ========
 
-A style sheet language and processor for dot.
+A style sheet language and processor for [dot](http://www.graphviz.org/)
 
 ____________________________________
 
@@ -39,12 +39,16 @@ ____________________________________
 
 To Try the example:
 
+    install graphviz
     clone the project
-    'mvn clean install'
-    'cd bin'
-    '.transform.sh'
+    mvn clean install
+    cd bin
+    ./transform.sh
 
-In the folder target/example their will be two svg files. The original and the styles svg. They look like this:
+In the folder target/example their will be two svg files. The original and the styled svg. They look like this:
+
+![classes](/classes.svg)
+![styled-classes](/styled-classes.svg)
 
 
 
