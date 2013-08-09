@@ -5,6 +5,8 @@ A style sheet language and processor for [dot](http://www.graphviz.org/)
 
 ____________________________________
 
+#Introduction
+
 Dot has no really good way to define styles for nodes, nodes internal structure and edges based. 
 This style sheet language tries to address that issue by providing a way to select groups of element 
 by a selector (xpath) and applying attributes to those.
@@ -36,6 +38,8 @@ The example stylesheet deinfes a special arrow head shape for all edgaes with th
 
 
 ____________________________________
+
+#Example
 
 To Try the example:
 
