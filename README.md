@@ -39,10 +39,10 @@ ____________________________________
 
 To Try the example:
 
-clone the project
-'mvn clean install'
-'cd bin'
-'.transform.sh'
+    clone the project
+    'mvn clean install'
+    'cd bin'
+    '.transform.sh'
 
 In the folder target/example their will be two svg files. The original and the styles svg. They look like this:
 
